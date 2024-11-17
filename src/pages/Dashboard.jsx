@@ -1,8 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell } from "recharts";
 import {
-  User,
-  Thermometer,
   ChevronRight,
 } from "lucide-react";
 import {
