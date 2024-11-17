@@ -15,6 +15,9 @@ import { FiRotateCcw, FiTruck, FiBox, FiClipboard } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiBox, BiPackage } from "react-icons/bi";
 import { FiSearch, FiBell, FiMoreVertical } from "react-icons/fi";
+import AlertItem from "../components/AlertItem";
+import { Divider , Divider2 , IconWithDivider } from "../components/Divider";
+import MetricCard from "../components/MetricCard";
 
 const App = () => {
 
@@ -29,73 +32,9 @@ const App = () => {
     </div>
   );
 
-  const MetricCard = ({ title, total, metrics }) => {
-    const data = metrics.map((metric) => ({
-      name: metric.name,
-      value: parseInt(metric.value),
-      color:
-        metric.name === "Upcoming"
-          ? "#FCD34D"
-          : metric.name === "Ongoing"
-          ? "#818CF8"
-          : "#4FD1C5",
-    }));
-
-    return (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-        <div className="p-4 border-b border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-800">{title}</h3>
-        </div>
-        <div className="p-6 flex flex-col items-center">
-          <div className="relative w-32 h-32 mb-4">
-            <PieChart width={128} height={128}>
-              <Pie
-                data={data}
-                cx={64}
-                cy={64}
-                innerRadius={40}
-                outerRadius={56}
-                paddingAngle={2}
-                dataKey="value"
-                startAngle={90}
-                endAngle={-270}
-              >
-                {data.map((entry, index) => (
-                  <Cell key={index} fill={entry.color} />
-                ))}
-              </Pie>
-            </PieChart>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-xs text-gray-500">Total</span>
-              <span className="font-semibold text-lg">{total}</span>
-            </div>
-          </div>
-          <div className="w-full space-y-2">
-            <div className="flex justify-between items-center px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-50 to-yellow-200">
-              <span className="text-gray-700 font-medium">Upcoming</span>
-              <span className="font-semibold text-gray-700">50</span>
-            </div>
-            <div className="flex justify-between items-center px-4 py-2 rounded-lg bg-gradient-to-r from-purple-50 to-purple-400">
-              <span className="text-gray-700 font-medium">Ongoing</span>
-              <span className="font-semibold text-gray-700">100</span>
-            </div>
-            <div className="flex justify-between items-center px-4 py-2 rounded-lg bg-gradient-to-r from-teal-50 to-teal-400">
-              <span className="text-gray-700 font-medium">Completed</span>
-              <span className="font-semibold text-gray-700">50</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const Divider = () => <div className="hidden md:block w-px h-10 bg-gray-300" />
   
 
-  const IconWithDivider = ({ icon: Icon }) => <div className="flex items-center"><Icon className="w-5 h-5 text-gray-400" /></div>
-  
 
-  const Divider2 = () => <div className="h-5 w-px bg-gray-200 mx-2" />;
 
   const QuickAction = ({ icon: Icon, text }) => (
     <div className="flex flex-col items-center gap-2 cursor-pointer">
@@ -125,46 +64,7 @@ const App = () => {
     </div>
   );
 
-  const AlertItem = ({ type, title, loadNo, billTo, date }) => {
-    return (
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            {type === "driver" ? (
-              <div className="p-2 bg-gray-100 rounded-full">
-                <User className="w-4 h-4 text-gray-600" />
-              </div>
-            ) : (
-              <div className="p-2 bg-gray-100 rounded-full">
-                <Thermometer className="w-4 h-4 text-gray-600" />
-              </div>
-            )}
-            <div className="flex-1">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-900">{title}</h3>
-                <span className="text-xs text-gray-500">{date}</span>
-              </div>
-              <div className="text-xs text-gray-500">
-                Load No: {loadNo} , Bill To: {billTo}
-              </div>
-            </div>
-          </div>
-          <p className="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua
-          </p>
-          <div className="flex items-center gap-2 justify-end mt-2 underline">
-            <button className="text-sm text-gray-700 hover:text-gray-900 mx-10">
-              Ignore
-            </button>
-            <button className="px-6 py-1.5 bg-blue-800 text-white rounded text-sm hover:bg-blue-900">
-              Resolve
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
+ 
 
   // bwdbqwd
 
